@@ -348,20 +348,27 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Penceramah Jemputan -->
                     <div class="space-y-3">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Penceramah (Sertakan CV & Masukkan Slot Tentatif)</label>
-                        <div class="space-y-2">
-                            <input type="text" id="penceramah1" placeholder="1. Nama Penceramah 1 & Organisasi" class="input-field w-full px-3 py-2 rounded-xl text-xs bg-white">
-                            <input type="text" id="penceramah2" placeholder="2. Nama Penceramah 2 & Organisasi" class="input-field w-full px-3 py-2 rounded-xl text-xs bg-white">
-                            <input type="text" id="penceramah3" placeholder="3. Nama Penceramah 3 & Organisasi" class="input-field w-full px-3 py-2 rounded-xl text-xs bg-white">
+                        <div class="flex items-center justify-between">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Penceramah (Sertakan CV & Masukkan Slot Tentatif)</label>
+                            <button type="button" onclick="tambahPenceramahInfo()" class="text-[10px] font-bold text-uitm-purple bg-purple-100 hover:bg-purple-200 px-3 py-1 rounded-lg transition flex items-center gap-1"><i class="fa-solid fa-plus"></i> Tambah</button>
+                        </div>
+                        <div id="penceramahInfoList" class="space-y-2">
+                            <div class="flex gap-2 items-center">
+                                <input type="text" class="input-penceramah input-field w-full px-3 py-2 rounded-xl text-xs bg-white" placeholder="1. Nama Penceramah & Organisasi">
+                            </div>
                         </div>
                     </div>
 
                     <!-- Fasilitator Staf & Pelajar -->
                     <div class="space-y-3">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Fasilitator (Staf / Pelajar)</label>
-                        <div class="space-y-2">
-                            <input type="text" id="fasilitatorStaf" placeholder="Staf: Nama / Jawatan / Gred" class="input-field w-full px-3 py-2 rounded-xl text-xs bg-white">
-                            <input type="text" id="fasilitatorPelajar" placeholder="Pelajar: Nama / No. Matrik / Kursus" class="input-field w-full px-3 py-2 rounded-xl text-xs bg-white">
+                        <div class="flex items-center justify-between">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Fasilitator (Staf / Pelajar)</label>
+                            <button type="button" onclick="tambahFasilitatorInfo()" class="text-[10px] font-bold text-uitm-purple bg-purple-100 hover:bg-purple-200 px-3 py-1 rounded-lg transition flex items-center gap-1"><i class="fa-solid fa-plus"></i> Tambah</button>
+                        </div>
+                        <div id="fasilitatorInfoList" class="space-y-2">
+                            <div class="flex gap-2 items-center">
+                                <input type="text" class="input-fasilitator input-field w-full px-3 py-2 rounded-xl text-xs bg-white" placeholder="Nama / Jawatan / Gred (Staf/Pelajar)">
+                            </div>
                         </div>
                     </div>
 
@@ -443,25 +450,31 @@
                         <h4 class="font-bold text-xs uppercase text-uitm-purple tracking-wider border-b border-slate-200 pb-2">b) Honorarium Penceramah / Fasilitator</h4>
 
                         <div class="space-y-3 text-xs">
-                            <div>
-                                <label class="block font-semibold text-slate-600 mb-1">Jawatan Penceramah (Kadar/Jam)</label>
-                                <select id="kadarPenceramah" onchange="kiraPerbelanjaanAutomatik()" class="input-field w-full p-2 rounded bg-white font-bold text-slate-700">
-                                    <option value="300">1. Pengurusan Tertinggi (RM300)</option>
-                                    <option value="200">2. Gred 53 & Gred 54 (RM200)</option>
-                                    <option value="150" selected>3. Gred 45 & Gred 52 (RM150)</option>
-                                    <option value="120">4. Gred 41 & Gred 44 (RM120)</option>
-                                    <option value="80">5. Kumpulan Sokongan (RM80)</option>
-                                </select>
+                            <div class="flex items-center justify-between">
+                                <label class="block font-semibold text-slate-600">Jawatan Penceramah (Kadar/Jam)</label>
+                                <button type="button" onclick="tambahKiraanPenceramah()" class="text-[10px] font-bold text-uitm-purple bg-purple-100 hover:bg-purple-200 px-2 py-1 rounded transition flex items-center gap-1"><i class="fa-solid fa-plus"></i> Tambah Penceramah</button>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <div>
-                                    <label class="block font-semibold text-slate-600">Jam Penceramah</label>
-                                    <input type="number" id="jamPenceramah" min="0" value="2" oninput="kiraPerbelanjaanAutomatik()" class="input-field w-full p-2 rounded bg-white font-bold">
+                            <div id="kiraanPenceramahList" class="space-y-2">
+                                <div class="kiraan-penceramah-row flex items-center gap-2">
+                                    <select onchange="kiraPerbelanjaanAutomatik()" class="kadar-penceramah input-field w-full p-2 rounded bg-white font-bold text-slate-700">
+                                        <option value="300">Pengurusan Tertinggi (RM300)</option>
+                                        <option value="200">Gred 53 & Gred 54 (RM200)</option>
+                                        <option value="150" selected>Gred 45 & Gred 52 (RM150)</option>
+                                        <option value="120">Gred 41 & Gred 44 (RM120)</option>
+                                        <option value="80">Kumpulan Sokongan (RM80)</option>
+                                    </select>
+                                    <input type="number" min="0" value="2" oninput="kiraPerbelanjaanAutomatik()" class="jam-penceramah input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
                                 </div>
-                                <div>
-                                    <label class="block font-semibold text-slate-600">Jam Fasilitator Pelajar</label>
-                                    <input type="number" id="jamFasilitatorPelajar" min="0" value="0" oninput="kiraPerbelanjaanAutomatik()" class="input-field w-full p-2 rounded bg-white font-bold">
-                                    <span class="text-[10px] text-slate-400">(Kadar RM15.00 / jam)</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between border-t border-slate-200 pt-3">
+                                <label class="block font-semibold text-slate-600">Jam Fasilitator Pelajar</label>
+                                <button type="button" onclick="tambahKiraanFasilitator()" class="text-[10px] font-bold text-uitm-purple bg-purple-100 hover:bg-purple-200 px-2 py-1 rounded transition flex items-center gap-1"><i class="fa-solid fa-plus"></i> Tambah Fasilitator</button>
+                            </div>
+                            <div id="kiraanFasilitatorList" class="space-y-2">
+                                <div class="kiraan-fasilitator-row flex items-center gap-2">
+                                    <span class="text-xs font-semibold text-slate-500 w-full">(Kadar RM15.00 / jam)</span>
+                                    <input type="number" min="0" value="0" oninput="kiraPerbelanjaanAutomatik()" class="jam-fasilitator input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
                                 </div>
                             </div>
                         </div>
@@ -522,11 +535,50 @@
                 </div>
             </div>
 
-            <!-- SECTION 5: PENGESAHAN & ULASAN KELULUSAN (Workflow Required by User Prompt) -->
+            <!-- SECTION 5: MUAT NAIK DOKUMEN SOKONGAN -->
             <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
                 <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
                     <div class="w-10 h-10 rounded-xl bg-purple-100 text-uitm-purple flex items-center justify-center font-bold text-lg">
                         5
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900">Muat Naik Dokumen Sokongan</h3>
+                        <p class="text-xs text-slate-500">Sila muat naik lampiran berkaitan dalam format PDF / Excel</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 1. Silibus -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">1. Silibus Kursus <span class="text-rose-500">*</span></label>
+                        <input type="file" id="failSilibus" accept=".pdf" required class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-50 file:text-uitm-purple hover:file:bg-purple-100 input-field rounded-xl bg-white border border-slate-200 p-1.5">
+                    </div>
+
+                    <!-- 2. Senarai Bilangan Pelajar -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">2. Senarai Nama & Bilangan Pelajar <span class="text-rose-500">*</span></label>
+                        <input type="file" id="failSenaraiPelajar" accept=".pdf,.xls,.xlsx" required class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-50 file:text-uitm-purple hover:file:bg-purple-100 input-field rounded-xl bg-white border border-slate-200 p-1.5">
+                    </div>
+
+                    <!-- 3. CV Penceramah -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">3. CV Penceramah / Profil Syarikat <span class="text-rose-500">*</span></label>
+                        <input type="file" id="failCVPenceramah" accept=".pdf" required class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-50 file:text-uitm-purple hover:file:bg-purple-100 input-field rounded-xl bg-white border border-slate-200 p-1.5">
+                    </div>
+
+                    <!-- 4. Kertas Kerja -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">4. Kertas Kerja Lengkap <span class="text-rose-500">*</span></label>
+                        <input type="file" id="failKertasKerja" accept=".pdf" required class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-50 file:text-uitm-purple hover:file:bg-purple-100 input-field rounded-xl bg-white border border-slate-200 p-1.5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 6: PENGESAHAN & ULASAN KELULUSAN (Workflow Required by User Prompt) -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-uitm-purple flex items-center justify-center font-bold text-lg">
+                        6
                     </div>
                     <div>
                         <h3 class="text-lg font-bold text-slate-900">Pengesahan Pemohon & Semakan Kelulusan</h3>
@@ -709,12 +761,8 @@
                     <td id="pdfPenceramah"></td>
                 </tr>
                 <tr>
-                    <td style="font-weight: bold;">FASILITATOR STAF:</td>
+                    <td style="font-weight: bold;">FASILITATOR:</td>
                     <td id="pdfFasilitatorStaf"></td>
-                </tr>
-                <tr>
-                    <td style="font-weight: bold;">FASILITATOR PELAJAR:</td>
-                    <td id="pdfFasilitatorPelajar"></td>
                 </tr>
             </table>
 
@@ -917,6 +965,61 @@ function doPost(e) {
             });
         }
 
+        // Functions to add dynamic fields for Penceramah and Fasilitator
+        function tambahPenceramahInfo() {
+            const container = document.getElementById('penceramahInfoList');
+            const div = document.createElement('div');
+            div.className = 'flex gap-2 items-center';
+            div.innerHTML = `
+                <input type="text" class="input-penceramah input-field w-full px-3 py-2 rounded-xl text-xs bg-white" placeholder="Nama Penceramah & Organisasi">
+                <button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700 px-2 font-bold"><i class="fa-solid fa-trash"></i></button>
+            `;
+            container.appendChild(div);
+        }
+
+        function tambahFasilitatorInfo() {
+            const container = document.getElementById('fasilitatorInfoList');
+            const div = document.createElement('div');
+            div.className = 'flex gap-2 items-center';
+            div.innerHTML = `
+                <input type="text" class="input-fasilitator input-field w-full px-3 py-2 rounded-xl text-xs bg-white" placeholder="Nama / Jawatan / Gred (Staf/Pelajar)">
+                <button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700 px-2 font-bold"><i class="fa-solid fa-trash"></i></button>
+            `;
+            container.appendChild(div);
+        }
+
+        function tambahKiraanPenceramah() {
+            const container = document.getElementById('kiraanPenceramahList');
+            const div = document.createElement('div');
+            div.className = 'kiraan-penceramah-row flex items-center gap-2';
+            div.innerHTML = `
+                <select onchange="kiraPerbelanjaanAutomatik()" class="kadar-penceramah input-field w-full p-2 rounded bg-white font-bold text-slate-700">
+                    <option value="300">Pengurusan Tertinggi (RM300)</option>
+                    <option value="200">Gred 53 & Gred 54 (RM200)</option>
+                    <option value="150" selected>Gred 45 & Gred 52 (RM150)</option>
+                    <option value="120">Gred 41 & Gred 44 (RM120)</option>
+                    <option value="80">Kumpulan Sokongan (RM80)</option>
+                </select>
+                <input type="number" min="0" value="2" oninput="kiraPerbelanjaanAutomatik()" class="jam-penceramah input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
+                <button type="button" onclick="this.parentElement.remove(); kiraPerbelanjaanAutomatik();" class="text-rose-500 hover:text-rose-700 px-1 font-bold"><i class="fa-solid fa-times"></i></button>
+            `;
+            container.appendChild(div);
+            kiraPerbelanjaanAutomatik();
+        }
+
+        function tambahKiraanFasilitator() {
+            const container = document.getElementById('kiraanFasilitatorList');
+            const div = document.createElement('div');
+            div.className = 'kiraan-fasilitator-row flex items-center gap-2';
+            div.innerHTML = `
+                <span class="text-xs font-semibold text-slate-500 w-full">(Kadar RM15.00 / jam)</span>
+                <input type="number" min="0" value="0" oninput="kiraPerbelanjaanAutomatik()" class="jam-fasilitator input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
+                <button type="button" onclick="this.parentElement.remove(); kiraPerbelanjaanAutomatik();" class="text-rose-500 hover:text-rose-700 px-1 font-bold"><i class="fa-solid fa-times"></i></button>
+            `;
+            container.appendChild(div);
+            kiraPerbelanjaanAutomatik();
+        }
+
         // Automatic Expenditure Calculation based on Circulars
         function kiraPerbelanjaanAutomatik() {
             const bilPeserta = parseInt(document.getElementById('bilPeserta').value) || 0;
@@ -931,10 +1034,17 @@ function doPost(e) {
             const subtotalMakananPenginapan = totalMakanan + totalPenginapan;
 
             // b) Honorarium
-            const kadarPenceramah = parseFloat(document.getElementById('kadarPenceramah').value) || 0;
-            const jamPenceramah = parseFloat(document.getElementById('jamPenceramah').value) || 0;
-            const jamFasilitatorPelajar = parseFloat(document.getElementById('jamFasilitatorPelajar').value) || 0;
-            const subtotalHonorarium = (jamPenceramah * kadarPenceramah) + (jamFasilitatorPelajar * 15);
+            let subtotalHonorarium = 0;
+            document.querySelectorAll('.kiraan-penceramah-row').forEach(row => {
+                const kadar = parseFloat(row.querySelector('.kadar-penceramah').value) || 0;
+                const jam = parseFloat(row.querySelector('.jam-penceramah').value) || 0;
+                subtotalHonorarium += (kadar * jam);
+            });
+
+            document.querySelectorAll('.kiraan-fasilitator-row').forEach(row => {
+                const jam = parseFloat(row.querySelector('.jam-fasilitator').value) || 0;
+                subtotalHonorarium += (jam * 15);
+            });
 
             // c & d) Keperluan & Hadiah
             const jumlahHadiah = parseFloat(document.getElementById('jumlahHadiah').value) || 0;
@@ -992,10 +1102,13 @@ function doPost(e) {
             document.getElementById('pdfTentatif').innerText = getValue('tentatifAktiviti');
 
             // Penceramah & Fasilitator
-            const penceramahList = [getValue('penceramah1'), getValue('penceramah2'), getValue('penceramah3')].filter(p => p !== '-').join(', ');
+            const penceramahInputs = document.querySelectorAll('.input-penceramah');
+            const penceramahList = Array.from(penceramahInputs).map(input => input.value).filter(val => val.trim() !== '').join(', ');
             document.getElementById('pdfPenceramah').innerText = penceramahList || 'Tiada Penceramah Luar';
-            document.getElementById('pdfFasilitatorStaf').innerText = getValue('fasilitatorStaf');
-            document.getElementById('pdfFasilitatorPelajar').innerText = getValue('fasilitatorPelajar');
+            
+            const fasilitatorInputs = document.querySelectorAll('.input-fasilitator');
+            const fasilitatorList = Array.from(fasilitatorInputs).map(input => input.value).filter(val => val.trim() !== '').join(', ');
+            document.getElementById('pdfFasilitatorStaf').innerText = fasilitatorList || 'Tiada Fasilitator';
 
             // Pengiring Table Population
             const pengiringBody = document.getElementById('pdfPengiringBody');
@@ -1088,11 +1201,27 @@ function doPost(e) {
             document.getElementById('noTel').value = '019-4882190';
             document.getElementById('email').value = 'zulkarnain@uitm.edu.my';
 
-            document.getElementById('penceramah1').value = 'Ir. Dr. Hafiz Mansor (Architect Cloud Intel Malaysia)';
-            document.getElementById('penceramah2').value = 'Pn. Siti Nurbaya (Senior DevOps Specialist AWS)';
+            document.getElementById('penceramahInfoList').innerHTML = `
+                <div class="flex gap-2 items-center">
+                    <input type="text" class="input-penceramah input-field w-full px-3 py-2 rounded-xl text-xs bg-white" value="Ir. Dr. Hafiz Mansor (Architect Cloud Intel Malaysia)">
+                    <button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700 px-2 font-bold"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <input type="text" class="input-penceramah input-field w-full px-3 py-2 rounded-xl text-xs bg-white" value="Pn. Siti Nurbaya (Senior DevOps Specialist AWS)">
+                    <button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700 px-2 font-bold"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
 
-            document.getElementById('fasilitatorStaf').value = 'En. Khairul Azmi / Pegawai Teknologi Maklumat / FSKM';
-            document.getElementById('fasilitatorPelajar').value = 'Amirul Aiman (2024819201 - CS251)';
+            document.getElementById('fasilitatorInfoList').innerHTML = `
+                <div class="flex gap-2 items-center">
+                    <input type="text" class="input-fasilitator input-field w-full px-3 py-2 rounded-xl text-xs bg-white" value="En. Khairul Azmi / Pegawai Teknologi Maklumat / FSKM">
+                    <button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700 px-2 font-bold"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <input type="text" class="input-fasilitator input-field w-full px-3 py-2 rounded-xl text-xs bg-white" value="Amirul Aiman (2024819201 - CS251)">
+                    <button type="button" onclick="this.parentElement.remove()" class="text-rose-500 hover:text-rose-700 px-2 font-bold"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
 
             document.getElementById('ringkasanProgram').value = 'Aktiviti ini menyokong topik penilaian amali silibus CSC584 Bab 6: Cloud Architecture & Deployment. Pelajar akan mendapat pendedahan terus daripada pakar industri cloud.';
             document.getElementById('implikasiProgram').value = 'Pelajar tidak dapat memenuhi 20% markah tugasan amali silibus berasaskan kes industri dan kekurangan pendedahan gunaan cloud terkini.';
@@ -1103,9 +1232,27 @@ function doPost(e) {
             document.getElementById('bilMalamPenginapan').value = '1';
             document.getElementById('kadarPenginapan').value = '15';
 
-            document.getElementById('kadarPenceramah').value = '150';
-            document.getElementById('jamPenceramah').value = '4';
-            document.getElementById('jamFasilitatorPelajar').value = '6';
+            document.getElementById('kiraanPenceramahList').innerHTML = `
+                <div class="kiraan-penceramah-row flex items-center gap-2">
+                    <select onchange="kiraPerbelanjaanAutomatik()" class="kadar-penceramah input-field w-full p-2 rounded bg-white font-bold text-slate-700">
+                        <option value="300">Pengurusan Tertinggi (RM300)</option>
+                        <option value="200">Gred 53 & Gred 54 (RM200)</option>
+                        <option value="150" selected>Gred 45 & Gred 52 (RM150)</option>
+                        <option value="120">Gred 41 & Gred 44 (RM120)</option>
+                        <option value="80">Kumpulan Sokongan (RM80)</option>
+                    </select>
+                    <input type="number" min="0" value="4" oninput="kiraPerbelanjaanAutomatik()" class="jam-penceramah input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
+                    <button type="button" onclick="this.parentElement.remove(); kiraPerbelanjaanAutomatik();" class="text-rose-500 hover:text-rose-700 px-1 font-bold"><i class="fa-solid fa-times"></i></button>
+                </div>
+            `;
+
+            document.getElementById('kiraanFasilitatorList').innerHTML = `
+                <div class="kiraan-fasilitator-row flex items-center gap-2">
+                    <span class="text-xs font-semibold text-slate-500 w-full">(Kadar RM15.00 / jam)</span>
+                    <input type="number" min="0" value="6" oninput="kiraPerbelanjaanAutomatik()" class="jam-fasilitator input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
+                    <button type="button" onclick="this.parentElement.remove(); kiraPerbelanjaanAutomatik();" class="text-rose-500 hover:text-rose-700 px-1 font-bold"><i class="fa-solid fa-times"></i></button>
+                </div>
+            `;
 
             document.getElementById('jumlahHadiah').value = '245';
             document.getElementById('jumlahPeralatan').value = '160';
@@ -1129,6 +1276,38 @@ function doPost(e) {
                     <td class="p-2"><input type="text" class="pengiring-gred input-field w-full px-2 py-1.5 rounded text-xs" placeholder="Gred (cth: DM52)"></td>
                     <td class="p-2 text-center no-print">-</td>
                 </tr>
+            `;
+
+            document.getElementById('penceramahInfoList').innerHTML = `
+                <div class="flex gap-2 items-center">
+                    <input type="text" class="input-penceramah input-field w-full px-3 py-2 rounded-xl text-xs bg-white" placeholder="1. Nama Penceramah & Organisasi">
+                </div>
+            `;
+            
+            document.getElementById('fasilitatorInfoList').innerHTML = `
+                <div class="flex gap-2 items-center">
+                    <input type="text" class="input-fasilitator input-field w-full px-3 py-2 rounded-xl text-xs bg-white" placeholder="Nama / Jawatan / Gred (Staf/Pelajar)">
+                </div>
+            `;
+
+            document.getElementById('kiraanPenceramahList').innerHTML = `
+                <div class="kiraan-penceramah-row flex items-center gap-2">
+                    <select onchange="kiraPerbelanjaanAutomatik()" class="kadar-penceramah input-field w-full p-2 rounded bg-white font-bold text-slate-700">
+                        <option value="300">Pengurusan Tertinggi (RM300)</option>
+                        <option value="200">Gred 53 & Gred 54 (RM200)</option>
+                        <option value="150" selected>Gred 45 & Gred 52 (RM150)</option>
+                        <option value="120">Gred 41 & Gred 44 (RM120)</option>
+                        <option value="80">Kumpulan Sokongan (RM80)</option>
+                    </select>
+                    <input type="number" min="0" value="2" oninput="kiraPerbelanjaanAutomatik()" class="jam-penceramah input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
+                </div>
+            `;
+
+            document.getElementById('kiraanFasilitatorList').innerHTML = `
+                <div class="kiraan-fasilitator-row flex items-center gap-2">
+                    <span class="text-xs font-semibold text-slate-500 w-full">(Kadar RM15.00 / jam)</span>
+                    <input type="number" min="0" value="0" oninput="kiraPerbelanjaanAutomatik()" class="jam-fasilitator input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
+                </div>
             `;
             
             kiraPerbelanjaanAutomatik();
