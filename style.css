@@ -473,7 +473,11 @@
                             </div>
                             <div id="kiraanFasilitatorList" class="space-y-2">
                                 <div class="kiraan-fasilitator-row flex items-center gap-2">
-                                    <span class="text-xs font-semibold text-slate-500 w-full">(Kadar RM15.00 / jam)</span>
+                                    <select onchange="kiraPerbelanjaanAutomatik()" class="kadar-fasilitator input-field w-full p-2 rounded bg-white font-bold text-slate-700">
+                                        <option value="50">Fasilitator Staf (RM50)</option>
+                                        <option value="25">Fasilitator Postgrad (RM25)</option>
+                                        <option value="15" selected>Fasilitator Undergrad (RM15)</option>
+                                    </select>
                                     <input type="number" min="0" value="0" oninput="kiraPerbelanjaanAutomatik()" class="jam-fasilitator input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
                                 </div>
                             </div>
@@ -1012,7 +1016,11 @@ function doPost(e) {
             const div = document.createElement('div');
             div.className = 'kiraan-fasilitator-row flex items-center gap-2';
             div.innerHTML = `
-                <span class="text-xs font-semibold text-slate-500 w-full">(Kadar RM15.00 / jam)</span>
+                <select onchange="kiraPerbelanjaanAutomatik()" class="kadar-fasilitator input-field w-full p-2 rounded bg-white font-bold text-slate-700">
+                    <option value="50">Fasilitator Staf (RM50)</option>
+                    <option value="25">Fasilitator Postgrad (RM25)</option>
+                    <option value="15" selected>Fasilitator Undergrad (RM15)</option>
+                </select>
                 <input type="number" min="0" value="0" oninput="kiraPerbelanjaanAutomatik()" class="jam-fasilitator input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
                 <button type="button" onclick="this.parentElement.remove(); kiraPerbelanjaanAutomatik();" class="text-rose-500 hover:text-rose-700 px-1 font-bold"><i class="fa-solid fa-times"></i></button>
             `;
@@ -1036,14 +1044,23 @@ function doPost(e) {
             // b) Honorarium
             let subtotalHonorarium = 0;
             document.querySelectorAll('.kiraan-penceramah-row').forEach(row => {
-                const kadar = parseFloat(row.querySelector('.kadar-penceramah').value) || 0;
-                const jam = parseFloat(row.querySelector('.jam-penceramah').value) || 0;
-                subtotalHonorarium += (kadar * jam);
+                const kadarEl = row.querySelector('.kadar-penceramah');
+                const jamEl = row.querySelector('.jam-penceramah');
+                if (kadarEl && jamEl) {
+                    const kadar = parseFloat(kadarEl.value) || 0;
+                    const jam = parseFloat(jamEl.value) || 0;
+                    subtotalHonorarium += (kadar * jam);
+                }
             });
 
             document.querySelectorAll('.kiraan-fasilitator-row').forEach(row => {
-                const jam = parseFloat(row.querySelector('.jam-fasilitator').value) || 0;
-                subtotalHonorarium += (jam * 15);
+                const kadarEl = row.querySelector('.kadar-fasilitator');
+                const jamEl = row.querySelector('.jam-fasilitator');
+                if (jamEl) {
+                    const kadar = kadarEl ? parseFloat(kadarEl.value) || 15 : 15;
+                    const jam = parseFloat(jamEl.value) || 0;
+                    subtotalHonorarium += (kadar * jam);
+                }
             });
 
             // c & d) Keperluan & Hadiah
@@ -1248,7 +1265,11 @@ function doPost(e) {
 
             document.getElementById('kiraanFasilitatorList').innerHTML = `
                 <div class="kiraan-fasilitator-row flex items-center gap-2">
-                    <span class="text-xs font-semibold text-slate-500 w-full">(Kadar RM15.00 / jam)</span>
+                    <select onchange="kiraPerbelanjaanAutomatik()" class="kadar-fasilitator input-field w-full p-2 rounded bg-white font-bold text-slate-700">
+                        <option value="50">Fasilitator Staf (RM50)</option>
+                        <option value="25">Fasilitator Postgrad (RM25)</option>
+                        <option value="15" selected>Fasilitator Undergrad (RM15)</option>
+                    </select>
                     <input type="number" min="0" value="6" oninput="kiraPerbelanjaanAutomatik()" class="jam-fasilitator input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
                     <button type="button" onclick="this.parentElement.remove(); kiraPerbelanjaanAutomatik();" class="text-rose-500 hover:text-rose-700 px-1 font-bold"><i class="fa-solid fa-times"></i></button>
                 </div>
@@ -1305,7 +1326,11 @@ function doPost(e) {
 
             document.getElementById('kiraanFasilitatorList').innerHTML = `
                 <div class="kiraan-fasilitator-row flex items-center gap-2">
-                    <span class="text-xs font-semibold text-slate-500 w-full">(Kadar RM15.00 / jam)</span>
+                    <select onchange="kiraPerbelanjaanAutomatik()" class="kadar-fasilitator input-field w-full p-2 rounded bg-white font-bold text-slate-700">
+                        <option value="50">Fasilitator Staf (RM50)</option>
+                        <option value="25">Fasilitator Postgrad (RM25)</option>
+                        <option value="15" selected>Fasilitator Undergrad (RM15)</option>
+                    </select>
                     <input type="number" min="0" value="0" oninput="kiraPerbelanjaanAutomatik()" class="jam-fasilitator input-field w-20 p-2 rounded bg-white font-bold text-center" placeholder="Jam">
                 </div>
             `;
